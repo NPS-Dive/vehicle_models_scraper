@@ -1,193 +1,153 @@
-Vehicle Models Scraper 🇮🇷
+# Vehicle Models Scraper
 
-A Python-based, asynchronous web-scraping framework for collecting real-time car listings from Iranian online marketplaces.
-The scraper extracts vehicle data, saves structured outputs, supports scheduling, and provides a command-line interface for running and managing scraping tasks.
+![Python Version](https://img.shields.io/badge/python-3.9%2B-blue)
+![Status](https://img.shields.io/badge/status-active-success)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Platform](https://img.shields.io/badge/platform-windows%20%7C%20linux%20%7C%20macOS-lightgrey)
 
-The project is designed to be:
+Vehicle Models Scraper is a Python-based web scraping project for collecting vehicle listings from multiple online marketplaces.  
+The project supports modular scrapers, CSV export, backup handling, and optional scheduling for repeated execution.
 
-modular
+The goal of the project is to provide a clean, extensible structure for scraping vehicle data in a maintainable way.
 
-robust against site changes
+---
 
-resumable and fault tolerant
+## Features
 
-suitable for both one-off runs and automated periodic execution
+- Scrapes vehicle advertisements from multiple websites
+- Modular scraper architecture
+- Command line interface for running tasks
+- Option to run all scrapers together
+- CSV output for collected data
+- Backup of previous runs
+- Basic scheduling support
+- Error handling for unavailable pages or network failures
 
-✨ Key Features
+---
 
-🚗 Scrapes multiple car listing websites
+## Project Structure
 
-⚡ asyncio-based high-performance scraping
-
-🧭 CLI interactive menu (cli_menu.py)
-
-🗂 Structured CSV output
-
-💾 Automatic backups
-
-🕒 Built-in task scheduler
-
-🖼 Error & debug screenshots
-
-🧱 Clean module architecture
-
-🛡 Graceful error handling & retries
-
-🧭 Project Structure
+```
 vehicle_models_scraper/
 ├── scrapers/
 │   ├── bama_scraper.py
-│   └── divar_scraper.py
-├── config/
-│   ├── settings.py
+│   ├── divar_scraper.py
 │   └── __init__.py
 ├── utils/
 │   ├── helpers.py
 │   └── __init__.py
-├── output/        # latest results
-├── backups/       # archived CSV backups
+├── config/
+│   ├── settings.py
+│   └── __init__.py
+├── output/
+├── backups/
 ├── cli_menu.py
-├── run_all.py
 ├── scheduler.py
-├── requirements.txt
-└── README.md
+├── run_all.py
+└── requirements.txt
+```
 
-🛠 Tech Stack
+Description of main parts:
 
-Python 3.9+
+- scrapers/ : website-specific scraper modules  
+- utils/ : helper functions and common utilities  
+- config/ : project configuration and constants  
+- output/ : generated CSV data files  
+- backups/ : archived older result files  
+- cli_menu.py : text-based interactive menu  
+- run_all.py : run all scrapers in one go  
+- scheduler.py : periodic automated execution  
 
-asyncio
+---
 
-requests / httpx / aiohttp (depending on site)
+## Requirements
 
-HTML parsing libraries
+- Python 3.9 or higher
 
-CSV export utilities
+Install dependencies using:
 
-🚀 How to Install
-git clone https://github.com/<your-username>/<repo-name>.git
-cd vehicle_models_scraper
-
-
-Create a virtual environment:
-
-python -m venv venv
-source venv/bin/activate   # Linux / macOS
-venv\Scripts\activate      # Windows
-
-
-Install dependencies:
-
+```
 pip install -r requirements.txt
+```
 
-▶️ How to Run
-Option 1 — Run all scrapers
+---
+
+## How to Run
+
+### Run from command line
+
+Run all scrapers:
+
+```
 python run_all.py
+```
 
-Option 2 — Use interactive CLI menu
+Run interactive command line menu:
+
+```
 python cli_menu.py
+```
 
-Option 3 — Run scheduled scraping
+Run the scheduler:
+
+```
 python scheduler.py
+```
 
-📦 Output
+---
 
-Generated data is automatically stored in:
+## Output
 
-/output
+Scraped data is saved as CSV files inside:
 
+```
+output/
+```
 
-Backups are rotated into:
+Backups of previous results are stored in:
 
-/backups
+```
+backups/
+```
 
+---
 
-Formats include:
+## Configuration
 
-CSV exports
+Project configuration is located in:
 
-debug screenshots for failures
-
-optional logs
-
-⚙️ Configuration
-
-Edit:
-
+```
 config/settings.py
+```
 
+You can modify:
 
-You can configure:
+- target websites
+- time delays
+- enabled scrapers
+- output directories
+- scheduling parameters
 
-target websites
+---
 
-delays & throttling
+## Extending the Project
 
-async concurrency
+To add a new website scraper:
 
-export locations
+1. Create a new file in `scrapers/`
+2. Implement scraping logic inside a class or functions
+3. Register it in `run_all.py` or `cli_menu.py`
+4. Add required configuration if needed
 
-scheduler intervals
+---
 
-🧠 Scraper Modules
-bama_scraper.py
+## Disclaimer
 
-Parses listing data from Bama car marketplace
-Extracts:
+This project is intended for educational and research purposes.  
+Please respect website terms of service and local laws when scraping data.
 
-make / model
+---
 
-price
+## License
 
-year
-
-mileage
-
-city
-
-divar_scraper.py
-
-Scrapes automobile listings from Divar
-
-Includes:
-
-error screenshots
-
-debug screenshots
-
-resilience to listing format changes
-
-🕒 Scheduler Support
-
-Automated recurring scraping via:
-
-python scheduler.py
-
-
-Supports:
-
-periodic execution
-
-timestamped backups
-
-unattended mode
-
-🧩 Utilities
-
-The utils/ package includes helpers for:
-
-data normalization
-
-timestamping
-
-safe CSV writing
-
-retry wrappers
-
-🤝 Contributing
-
-Pull requests and feature suggestions are welcome.
-
-📄 License
-
-This project is licensed under the MIT License unless otherwise specified in LICENSE.
+MIT License
